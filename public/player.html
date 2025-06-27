@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <title>Giocatore</title>
+  <link rel="stylesheet" href="https://unpkg.com/missing.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="centered">
+    <h2>Partecipa a un'asta</h2>
+    <form id="joinForm">
+      <input type="text" id="code" placeholder="Codice dell'asta" required />
+      <input type="text" id="nickname" placeholder="Il tuo nome" required />
+      <button type="submit">Entra</button>
+    </form>
+    <div id="waiting" hidden>
+      <p>Attendi che l'asta venga avviata...</p>
+    </div>
+    <div id="bidSection" hidden>
+      <p>Il tuo denaro: <strong id="income"></strong></p>
+      <input type="number" id="offerAmount" placeholder="La tua offerta" min="1" />
+      <button id="submitOffer">Invia offerta</button>
+    </div>
+    <div id="result" hidden></div>
+  </main>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

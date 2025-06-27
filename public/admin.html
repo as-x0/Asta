@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="it">
+
+  <head>
+  <meta charset="UTF-8" />
+  <title>Admin</title>
+  <link rel="stylesheet" href="https://unpkg.com/missing.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+  
+<body>
+  <main class="centered">
+    <h2>Amministratore</h2>
+    <form id="createForm">
+      <input type="number" id="totalIncome" placeholder="Reddito totale per l'asta" required />
+      <button type="submit">Crea Asta</button>
+    </form>
+    <div id="adminPanel" hidden>
+      <p>Codice Asta: <strong id="auctionCode"></strong></p>
+      <h3>Partecipanti:</h3>
+      <ul id="playersList"></ul>
+      <button id="startAuction">Avvia l'asta</button>
+      <h3>Offerte:</h3>
+      <ul id="offersList"></ul>
+      <button id="endAuction">Termina l'asta</button>
+     
+      <div id="winnerResult" hidden>
+        <h4 id="winnerMessage"></h4>
+      </div>
+
+    </div>
+  </main>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
