@@ -4,8 +4,10 @@ const pathname = window.location.pathname;
 if (pathname.includes('admin')) {
   const createForm = document.getElementById('createForm');
   const adminPanel = document.getElementById('adminPanel');
+  const auctionInProgress = document.getElementById('auctionInProgress');
   const auctionCodeEl = document.getElementById('auctionCode');
   const playersList = document.getElementById('playersList');
+  const playerCount = document.getElementById('playerCount');
   const offersList = document.getElementById('offersList');
   const winnerResult = document.getElementById('winnerResult');
 
@@ -16,17 +18,20 @@ if (pathname.includes('admin')) {
   });
 
   socket.on('auctionCreated', (code) => {
-    document.getElementById('createForm').hidden = true;
+    document.getElementById('createFormSection').hidden = true;
     adminPanel.hidden = false;
     auctionCodeEl.textContent = code;
   });
 
   socket.on('playerListUpdate', (players) => {
     playersList.innerHTML = players.map(p => `<li>${p.nickname}</li>`).join('');
+    playerCount.textContent = players.length;
   });
 
   document.getElementById('startAuction').addEventListener('click', () => {
     socket.emit('startAuction', auctionCodeEl.textContent);
+    adminPanel.hidden = true;
+    auctionInProgress.hidden = false;
   });
 
   document.getElementById('endAuction').addEventListener('click', () => {
@@ -34,14 +39,18 @@ if (pathname.includes('admin')) {
   });
 
   socket.on('updateOffers', (offers) => {
-    offersList.innerHTML = offers.map(o => `<li>${o.nickname}: ${o.amount}</li>`).join('');
+    const sorted = [...offers].sort((a, b) => b.amount - a.amount);
+    offersList.innerHTML = sorted.map(o => `<li>${o.nickname}: ${o.amount}</li>`).join('');
   });
 
   socket.on('auctionEnded', (winner) => {
-    document.getElementById('winnerMessage').textContent = 
-      `Vincitore: ${winner.nickname} con offerta di ${winner.amount}`;
+    auctionInProgress.hidden = true;
     winnerResult.hidden = false;
+    document.getElementById('winnerMessage').textContent =
+      `Vincitore: ${winner.nickname} con offerta di ${winner.amount}`;
   });
+
+
 
 } else if (pathname.includes('player')) {
   const joinForm = document.getElementById('joinForm');
