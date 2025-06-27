@@ -158,9 +158,9 @@ p {
 footer.copyright {
   border-top: none !important;
   position: fixed;
-  bottom: -50px;
-  right: -300px;
-  font-size: 12px;
+  bottom: -45px;
+  right: -250px;
+  font-size: 5px;
   color: #999999;
   font-family: 'Poppins', sans-serif;
   pointer-events: none;
