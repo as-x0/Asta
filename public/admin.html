@@ -1,14 +1,22 @@
 <!DOCTYPE html>
 <html lang="it">
+  
 <head>
   <meta charset="UTF-8" />
   <title>Admin</title>
   <link rel="stylesheet" href="https://unpkg.com/missing.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+  <button id="homeBtn" class="home-button" onclick="window.location.href='/'" title="Torna alla home">
+    🏠
+  </button>
+  <footer class="copyright">&copy; 2025</footer>
 </head>
+  
 <body>
+  
   <main class="centered">
+    
     <!-- Initial money input -->
     <section id="createFormSection">
       <h2>Inserisci la disponibilità iniziale di denaro</h2>
@@ -41,5 +49,7 @@
 
   <script src="/socket.io/socket.io.js"></script>
   <script src="script.js"></script>
+  
 </body>
+  
 </html>
